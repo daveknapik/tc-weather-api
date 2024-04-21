@@ -39,7 +39,14 @@ gem "bootsnap", require: false
 gem "open-weather-ruby-client", "~> 0.4"
 
 # OpenTelemetry is a set of APIs, libraries, agents, and instrumentation to provide observability
-gem "opentelemetry-sdk", "~> 1.4"
+gem "opentelemetry-api", github: "open-telemetry/opentelemetry-ruby", tag: "opentelemetry-sdk-experimental/v0.3.2"
+gem "opentelemetry-sdk", github: "open-telemetry/opentelemetry-ruby", tag: "opentelemetry-sdk-experimental/v0.3.2"
+# gem "opentelemetry-metrics-sdk", github: "open-telemetry/opentelemetry-ruby", tag: "opentelemetry-sdk-experimental/v0.3.2"
+gem "opentelemetry-metrics-sdk", github: "xuan-cao-swi/opentelemetry-ruby", tag: "periodic-reader"
+
+# gem "opentelemetry-metrics-sdk", path: "/Users/daveknapik/Development/external/opentelemetry-ruby/metrics_sdk"
+gem 'opentelemetry-exporter-otlp', '~> 0.26.3'
+gem "opentelemetry-exporter-zipkin", "~> 0.23.1"
 gem "opentelemetry-instrumentation-all", "~> 0.60.0"
 
 group :development, :test do
@@ -61,4 +68,5 @@ group :development do
   gem "solargraph"
   gem "solargraph-rails"
 end
+
 
