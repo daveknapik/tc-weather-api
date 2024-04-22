@@ -2,52 +2,31 @@
 require 'opentelemetry/sdk'
 require 'opentelemetry/instrumentation/all'
 require 'opentelemetry-exporter-otlp'
+require 'opentelemetry/exporter/otlp_metrics'
 require 'opentelemetry-exporter-zipkin'
-
-
-module OpenTelemetry
-  module SDK
-    module Metrics
-      module Export
-        # Outputs {SpanData} to the console.
-        #
-        # Potentially useful for exploratory purposes.
-        class ConsoleExporter
-          def initialize
-            @stopped = false
-          end
-
-          def export(spans, timeout: nil)
-            return FAILURE if @stopped
-
-            Array(spans).each { |s| pp s }
-
-            SUCCESS
-          end
-
-          def force_flush(timeout: nil)
-            SUCCESS
-          end
-
-          def shutdown(timeout: nil)
-            @stopped = true
-            SUCCESS
-          end
-        end
-      end
-    end
-  end
-end
-
+require 'opentelemetry/sdk/metrics/export/console_exporter'
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = 'tc-weather-api'
   c.use_all # enable all instrumentation
 end
 
-TcWeatherApiConsoleExporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new
-TcWeatherApiMetricReader = OpenTelemetry::SDK::Metrics::Export::PeriodicMetricReader.new(interval_millis: 5, timeout_millis: 5, exporter: TcWeatherApiConsoleExporter)
-OpenTelemetry.meter_provider.add_metric_reader(TcWeatherApiMetricReader)
+TcWeatherTracer = OpenTelemetry.tracer_provider.tracer("tc-weather-api-tracer")
 
+# create an exporter for metrics
+console_exporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new
+otlp_metric_exporter = OpenTelemetry::Exporter::OTLP::MetricsExporter.new
 
-TcWeatherApiMeter = OpenTelemetry.meter_provider.meter("tc-weather-api-meter")
+# create a periodic reader for metrics and pair it with the exporter
+metric_reader = OpenTelemetry::SDK::Metrics::Export::PeriodicMetricReader.new(interval_millis: 60, timeout_millis: 10, exporter: otlp_metric_exporter)
+
+# pair the reader with the provider
+OpenTelemetry.meter_provider.add_metric_reader(metric_reader)
+
+# create a meter
+meter = OpenTelemetry.meter_provider.meter("tc-weather-api-meter")
+
+# TODO: Find a better place for these global instruments (e.g. OpenTelemetry::Context object)
+OpenWeatherApiRequestCounter = meter.create_counter("requests-to-open-weather-api", unit: "request", description: "Counter to track requests to the OpenWeatherMap API")
+OpenWeatherApiResponseTimeHistogram = meter.create_histogram("open-weather-api-response-time", unit: "ns", description: "Response time in nanoseconds")
+

@@ -57,7 +57,12 @@ Learn more about exporters at https://opentelemetry.io/docs/languages/ruby/expor
 
 ### Signoz
 
-`env OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" rails server -p 8080`
+```shell
+OTEL_EXPORTER=otlp \
+OTEL_SERVICE_NAME=tc-weather-api \
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 \
+rails server
+```
 
 --- 
 * System dependencies
