@@ -3,6 +3,8 @@ class ForecastsController < ApplicationController
   after_action :track_metrics
 
   def show
+    @current_span.add_attributes('params.city' => forecast_params[:city], 'params.state' => forecast_params[:state], 'params.country' => forecast_params[:country])
+
     begin
       TcWeatherTracer.in_span('fetch weather data') do |span|
         @data = @open_weather_client.current_weather(forecast_params.merge(units: 'metric'))
