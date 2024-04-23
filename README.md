@@ -1,7 +1,6 @@
-# README
+# TC Weather API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An overview of the application, its purpose, and potential use cases
 
 ## Prerequisites
 
@@ -13,6 +12,12 @@ application up and running.
 - Copy `.env.template` to `.env` and set `OPEN_WEATHER_MAP_API_KEY` to the value of your new API KEY
 
 ## Running the app locally
+
+TODO: A simple guide on how to set up and run the application locally
+
+### Without telemetry
+
+Good old-fashioned `rails s`
 
 ### With telemetry, sent to console
 
@@ -56,13 +61,12 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 \
 rails server
 ```
 
-## Sample calls
+## API docs
+
+TODO: API endpoint, request/response formats, and examples of usage
+
+### Usage examples
 
 http://localhost:8080/forecasts/Springfield?state=MO&country=US
 
----
-
-- System dependencies
-- How to run the test suite
-- Services (job queues, cache servers, search engines, etc.)
-- Deployment instructions
+## Recommendations on how the API could be improved or extended to cater to a broader audience

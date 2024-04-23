@@ -10,6 +10,7 @@ class ForecastsController < ApplicationController
         @data = @open_weather_client.current_weather(forecast_params.merge(units: 'metric'))
         @calculate_api_call_duration = -> { span.end_timestamp - span.start_timestamp }
       end
+      @current_span.add_attributes('data.city' => @data.name, 'data.country' => @data.sys.country)
     rescue Faraday::ResourceNotFound => e
       @data = { error: "Location not found: #{forecast_params.values.join(', ')}", status: 404 }
       @current_span.status = OpenTelemetry::Trace::Status.error(@data[:error])
