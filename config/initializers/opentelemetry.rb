@@ -12,8 +12,8 @@ end
 
 TcWeatherTracer = OpenTelemetry.tracer_provider.tracer('tc-weather-api-tracer')
 
-# create an exporter for metrics
-console_exporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new # TODO: Just make it OpenTelemetry::Exporter::ConsoleExporter
+# create metrics exporters
+console_exporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new
 otlp_metric_exporter = OpenTelemetry::Exporter::OTLP::MetricsExporter.new
 
 # create a periodic reader for metrics and pair it with the exporter
