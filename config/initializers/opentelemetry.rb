@@ -6,7 +6,16 @@ require 'opentelemetry/sdk/metrics/export/console_exporter'
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = 'tc-weather-api'
-  c.use_all # enable all instrumentation
+  c.use 'OpenTelemetry::Instrumentation::ActiveSupport'
+  c.use 'OpenTelemetry::Instrumentation::ActionPack'
+  c.use 'OpenTelemetry::Instrumentation::Rack'
+  c.use 'OpenTelemetry::Instrumentation::ActiveJob'
+  c.use 'OpenTelemetry::Instrumentation::ActiveRecord'
+  c.use 'OpenTelemetry::Instrumentation::ActionView'
+  c.use 'OpenTelemetry::Instrumentation::ConcurrentRuby'
+  c.use 'OpenTelemetry::Instrumentation::Faraday'
+  c.use 'OpenTelemetry::Instrumentation::Net::HTTP'
+  c.use 'OpenTelemetry::Instrumentation::Rails'
 end
 
 TcWeatherTracer = OpenTelemetry.tracer_provider.tracer('tc-weather-api-tracer')
