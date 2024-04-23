@@ -1,39 +1,39 @@
 class ForecastsController < ApplicationController
-  after_action :send_histogram_metrics, only: :show
+  before_action :set_current_span, :set_client
+  after_action :track_metrics
 
   def show
-   current_span = OpenTelemetry::Trace.current_span
-    # initialize the OpenWeatherMap client
-    client = OpenWeather::Client.new(
-      api_key: ENV["OPEN_WEATHER_MAP_API_KEY"]
-    ) 
-    current_span.add_event("OpenWeatherMap client initialized") 
-    
-    # track the number of requests
-    OpenWeatherApiRequestCounter.add(1)
-
-    # fetch the weather data
     begin
-      data = {}
-      fetch_weather_data_span = nil
-      TcWeatherTracer.in_span("fetch weather data") do |s|
-        data = client.current_weather(city: params[:city], units: "metric")
-        fetch_weather_data_span = s
+      TcWeatherTracer.in_span('fetch weather data') do |span|
+        @data = @open_weather_client.current_weather(forecast_params.merge(units: 'metric'))
+        @calculate_api_call_duration = -> { span.end_timestamp - span.start_timestamp }
       end
-      duration = fetch_weather_data_span.end_timestamp - fetch_weather_data_span.start_timestamp
-      OpenWeatherApiResponseTimeHistogram.record(duration, attributes: {'foo' => 'bar'})
     rescue Faraday::ResourceNotFound => e
-      data = { error: "City not found: #{params[:city]}", status: 404 }
-      current_span.status = OpenTelemetry::Trace::Status.error(data[:error])
-      current_span.record_exception(e)
+      @data = { error: "City not found: #{params[:city]}", status: 404 }
+      @current_span.status = OpenTelemetry::Trace::Status.error(@data[:error])
+      @current_span.record_exception(e)
     end
 
-    render json: data
+    render json: @data
   end
 
   private
 
-  def send_histogram_metrics
-    
+  def forecast_params
+    params.permit(:city, :state, :country)
+  end
+
+  def set_current_span
+    @current_span = OpenTelemetry::Trace.current_span
+  end
+
+  def set_client
+    @open_weather_client = OpenWeather::Client.new
+  end
+
+  def track_metrics
+    # track the number of requests
+    OpenWeatherApiRequestCounter.add(1)
+    OpenWeatherApiResponseTimeHistogram.record(@calculate_api_call_duration.call) if @calculate_api_call_duration
   end
 end

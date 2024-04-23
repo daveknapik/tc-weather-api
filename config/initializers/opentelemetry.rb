@@ -1,4 +1,3 @@
-# config/initializers/opentelemetry.rb
 require 'opentelemetry/sdk'
 require 'opentelemetry/instrumentation/all'
 require 'opentelemetry-exporter-otlp'
@@ -11,22 +10,21 @@ OpenTelemetry::SDK.configure do |c|
   c.use_all # enable all instrumentation
 end
 
-TcWeatherTracer = OpenTelemetry.tracer_provider.tracer("tc-weather-api-tracer")
+TcWeatherTracer = OpenTelemetry.tracer_provider.tracer('tc-weather-api-tracer')
 
 # create an exporter for metrics
-console_exporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new
+console_exporter = OpenTelemetry::SDK::Metrics::Export::ConsoleExporter.new # TODO: Just make it OpenTelemetry::Exporter::ConsoleExporter
 otlp_metric_exporter = OpenTelemetry::Exporter::OTLP::MetricsExporter.new
 
 # create a periodic reader for metrics and pair it with the exporter
-metric_reader = OpenTelemetry::SDK::Metrics::Export::PeriodicMetricReader.new(interval_millis: 60, timeout_millis: 10, exporter: otlp_metric_exporter)
+metric_reader = OpenTelemetry::SDK::Metrics::Export::PeriodicMetricReader.new(interval_millis: 60, timeout_millis: 10, exporter: console_exporter)
 
 # pair the reader with the provider
 OpenTelemetry.meter_provider.add_metric_reader(metric_reader)
 
 # create a meter
-meter = OpenTelemetry.meter_provider.meter("tc-weather-api-meter")
+meter = OpenTelemetry.meter_provider.meter('tc-weather-api-meter')
 
 # TODO: Find a better place for these global instruments (e.g. OpenTelemetry::Context object)
-OpenWeatherApiRequestCounter = meter.create_counter("requests-to-open-weather-api", unit: "request", description: "Counter to track requests to the OpenWeatherMap API")
-OpenWeatherApiResponseTimeHistogram = meter.create_histogram("open-weather-api-response-time", unit: "ns", description: "Response time in nanoseconds")
-
+OpenWeatherApiRequestCounter = meter.create_counter('requests-to-open-weather-api', unit: 'request', description: 'Counter to track requests to the OpenWeatherMap API')
+OpenWeatherApiResponseTimeHistogram = meter.create_histogram('open-weather-api-response-time', unit: 'ns', description: 'Response time in nanoseconds')

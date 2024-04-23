@@ -64,6 +64,10 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 \
 rails server
 ```
 
+## Sample calls
+
+http://localhost:8080/forecasts/Springfield?state=MO&country=US
+
 --- 
 * System dependencies
 * How to run the test suite
