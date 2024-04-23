@@ -12,7 +12,7 @@ application up and running.
 - Sign up for an OpenWeatherMap API KEY
 - Copy `.env.template` to `.env` and set `OPEN_WEATHER_MAP_API_KEY` to the value of your new API KEY
 
-## Running the app locally 
+## Running the app locally
 
 ### With telemetry, sent to console
 
@@ -39,19 +39,11 @@ docker run -d --name jaeger \
   -p 14269:14269 \
   -p 9411:9411 \
   jaegertracing/all-in-one:latest
-  ```
+```
 
 Start the app: `env OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4318" rails server -p 8080`
 
 Then navigate to http://localhost:16686/.
-
-### Zipkin
-
-```shell
-$ docker run --rm -d -p 9411:9411 --name zipkin openzipkin/zipkin
-
-$ env OTEL_TRACES_EXPORTER=zipkin rails server
-```
 
 Learn more about exporters at https://opentelemetry.io/docs/languages/ruby/exporters/
 
@@ -68,8 +60,9 @@ rails server
 
 http://localhost:8080/forecasts/Springfield?state=MO&country=US
 
---- 
-* System dependencies
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
+---
+
+- System dependencies
+- How to run the test suite
+- Services (job queues, cache servers, search engines, etc.)
+- Deployment instructions

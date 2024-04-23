@@ -2,7 +2,6 @@ require 'opentelemetry/sdk'
 require 'opentelemetry/instrumentation/all'
 require 'opentelemetry-exporter-otlp'
 require 'opentelemetry/exporter/otlp_metrics'
-require 'opentelemetry-exporter-zipkin'
 require 'opentelemetry/sdk/metrics/export/console_exporter'
 
 OpenTelemetry::SDK.configure do |c|
