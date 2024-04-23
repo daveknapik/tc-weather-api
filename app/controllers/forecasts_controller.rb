@@ -9,7 +9,7 @@ class ForecastsController < ApplicationController
         @calculate_api_call_duration = -> { span.end_timestamp - span.start_timestamp }
       end
     rescue Faraday::ResourceNotFound => e
-      @data = { error: "City not found: #{params[:city]}", status: 404 }
+      @data = { error: "Location not found: #{forecast_params.values.join(', ')}", status: 404 }
       @current_span.status = OpenTelemetry::Trace::Status.error(@data[:error])
       @current_span.record_exception(e)
     end
