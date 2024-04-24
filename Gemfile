@@ -57,9 +57,8 @@ gem 'opentelemetry-exporter-otlp-metrics',
 gem 'opentelemetry-exporter-otlp', '~> 0.26.3'
 gem 'opentelemetry-instrumentation-all', '~> 0.60.0'
 
-# Swagger and testing
+# Swagger integration
 gem 'rswag', '~> 2.13.0'
-gem 'rspec-rails', '~> 6.1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -79,4 +78,10 @@ group :development do
   gem 'solargraph'
   gem 'solargraph-rails'
   gem 'syntax_tree'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 6.1.2'
+  gem 'vcr', '~> 6.2.0'
+  gem 'webmock', '~> 3.23.0'
 end
