@@ -73,9 +73,9 @@ This application records traces and metrics, but Jaeger UI only supports tracing
 
 TODO: API endpoint, request/response formats, and examples of usage
 
-## GET /forecasts/:city
+### GET /forecasts/:city
 
-### Parameters
+#### Parameters
 
 | Name    | Required? | Type   | Description                                                                                                                   |
 | ------- | --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -85,9 +85,9 @@ TODO: API endpoint, request/response formats, and examples of usage
 
 \* Note that if you specify state, you must also specify country in order for the OpenWeatherMap API to find the location. State and country are otherwise optional parameters.
 
-### Usage examples
+#### Usage examples
 
-#### Get the current weather for a city using its name only
+##### Get the current weather for a city using only its name
 
 http://localhost:8080/forecasts/Tokyo
 
@@ -142,9 +142,9 @@ http://localhost:8080/forecasts/Tokyo
 }
 ```
 
-#### Multiple cities with the same name in different countries
+##### Multiple cities with the same name in different countries
 
-##### Get the current weather for the city of York (no country specified)
+###### Get the current weather for the city of York (no country specified)
 
 In this first example, we only supply the required city name parameter and the API chooses one of the Yorks for us: the one in United States, as evidenced by how these coordinates match those of the US-specific call in the third example `"coord":{"lon":-77,"lat":40.1254}`.
 
@@ -199,7 +199,7 @@ http://localhost:8080/forecasts/York
 }
 ```
 
-##### Get the current weather for the city of York, GB
+###### Get the current weather for the city of York, GB
 
 http://localhost:8080/forecasts/York?country=GB
 
@@ -254,7 +254,7 @@ http://localhost:8080/forecasts/York?country=GB
 }
 ```
 
-##### Get the current weather for the city of York, US
+###### Get the current weather for the city of York, US
 
 Lastly, we do a specific search for the current weather in York, US and we correctly get that city's current weather. This happens to be the same York that was inferred by the API in the first example where we only provided the `city` parameter. (Note that this also happens to be York, PA, US, which can be verified by searching with `state=PA` in the query string.)
 
@@ -309,11 +309,11 @@ http://localhost:8080/forecasts/York?country=US
 }
 ```
 
-#### Multiple cities with the same name in the United States
+##### Multiple cities with the same name in the United States
 
 In the following examples, look closely at what happens when you have multiple cities with the same name in the United States.
 
-##### Get the current weather for the city of Springfield (no state nor country specified)
+###### Get the current weather for the city of Springfield (no state nor country specified)
 
 In this first example, we only supply the required city name parameter and the API chooses one of the Springfields for us: the one in the state of Missouri, as evidenced by how these coordinates match those of the Missouri-specific call in the third example `"coord": {"lon": -93.2982, "lat": 37.2153}`.
 
@@ -368,7 +368,7 @@ http://localhost:8080/forecasts/Springfield
 }
 ```
 
-##### Get the current weather for the city of Springfield, Illinois, US
+###### Get the current weather for the city of Springfield, Illinois, US
 
 http://localhost:8080/forecasts/Springfield?state=IL&country=US
 
@@ -425,7 +425,7 @@ Note that you must specify country if you use state, otherwise the remote API at
 }
 ```
 
-##### Get the current weather for the city of Springfield, Missouri, US
+###### Get the current weather for the city of Springfield, Missouri, US
 
 Lastly, we do a specific search for the current weather in Springfield, Missouri and we correctly get that city's current weather. This happens to be the same Springfield that was inferred by the API in the first example where we only provided the `city` parameter.
 
