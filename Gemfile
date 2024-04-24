@@ -50,6 +50,9 @@ gem 'opentelemetry-exporter-otlp-metrics', github: 'open-telemetry/opentelemetry
 gem 'opentelemetry-exporter-otlp', '~> 0.26.3'
 gem 'opentelemetry-instrumentation-all', '~> 0.60.0'
 
+gem 'rswag'
+gem 'rspec-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
