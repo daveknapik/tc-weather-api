@@ -16,13 +16,14 @@ Potential use cases include:
 
 ## Configuration
 
-- Clone this repository
-- Make sure you have the necessary Ruby version installed (see Prerequisites above)
-- Run `bundle install` in the project root
 - Sign up for an [OpenWeatherMap API KEY](https://home.openweathermap.org/api_keys)
 - Copy `.env.template` to `.env` and set `OPEN_WEATHER_MAP_API_KEY` to the value of your new API KEY
 
 ## Running the app locally
+
+- Clone this repository
+- Make sure you have the necessary Ruby version installed (see Prerequisites above)
+- Run `bundle install` in the project root
 
 ### Without telemetry
 
