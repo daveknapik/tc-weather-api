@@ -74,8 +74,6 @@ This application records traces and metrics, but Jaeger UI only supports tracing
 
 ## API docs
 
-TODO: API endpoint, request/response formats, and examples of usage
-
 ### GET /forecasts/:city
 
 #### Parameters
@@ -149,7 +147,7 @@ http://localhost:8080/forecasts/Tokyo
 
 ###### Get the current weather for the city of York (no country specified)
 
-In this first example, we only supply the required city name parameter and the API chooses one of the Yorks for us: the one in United States, as evidenced by how these coordinates match those of the US-specific call in the third example `"coord":{"lon":-77,"lat":40.1254}`.
+In this first example, we only supply the required city name parameter and the API chooses one of the Yorks for us: the one in United States, as evidenced by the `"country": "US"` portion of the response and how these coordinates match those of the US-specific call in the third example `"coord":{"lon":-77,"lat":40.1254}`.
 
 http://localhost:8080/forecasts/York
 
@@ -375,7 +373,7 @@ http://localhost:8080/forecasts/Springfield
 
 http://localhost:8080/forecasts/Springfield?state=IL&country=US
 
-In this example, we specific the US state of Illinois via the `state` parameter as `state=IL` and we find a different Springfield, as evidenced by the coordinates of `"coord": {"lon": -89.6437, "lat": 39.8017}`.
+In this example, we specify the US state of Illinois via the `state` parameter as `state=IL` and we find a different Springfield, as evidenced by the coordinates of `"coord": {"lon": -89.6437, "lat": 39.8017}`.
 
 Note that you must specify country if you use state, otherwise the remote API at OpenWeatherMap cannot find the location and will return a 404.
 
