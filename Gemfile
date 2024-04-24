@@ -33,7 +33,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+# gem 'rack-cors'
 
 # Gem for accessing the OpenWeatherMap API
 gem 'open-weather-ruby-client', '~> 0.4'
@@ -43,15 +43,23 @@ gem 'opentelemetry-api'
 gem 'opentelemetry-sdk'
 
 # See https://github.com/open-telemetry/opentelemetry-ruby/blob/main/exporter/otlp-metrics/README.md
-gem 'opentelemetry-metrics-api', github: 'open-telemetry/opentelemetry-ruby', glob: 'metrics_api/*.gemspec'
-gem 'opentelemetry-metrics-sdk', github: 'daveknapik/opentelemetry-ruby', glob: 'metrics_sdk/*.gemspec', branch: 'periodic-reader'
-gem 'opentelemetry-exporter-otlp-metrics', github: 'open-telemetry/opentelemetry-ruby', glob: 'exporter/otlp-metrics/*.gemspec'
+gem 'opentelemetry-metrics-api',
+    github: 'open-telemetry/opentelemetry-ruby',
+    glob: 'metrics_api/*.gemspec'
+gem 'opentelemetry-metrics-sdk',
+    github: 'daveknapik/opentelemetry-ruby',
+    glob: 'metrics_sdk/*.gemspec',
+    branch: 'periodic-reader'
+gem 'opentelemetry-exporter-otlp-metrics',
+    github: 'open-telemetry/opentelemetry-ruby',
+    glob: 'exporter/otlp-metrics/*.gemspec'
 
 gem 'opentelemetry-exporter-otlp', '~> 0.26.3'
 gem 'opentelemetry-instrumentation-all', '~> 0.60.0'
 
-gem 'rswag'
-gem 'rspec-rails'
+# Swagger and testing
+gem 'rswag', '~> 2.13.0'
+gem 'rspec-rails', '~> 6.1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

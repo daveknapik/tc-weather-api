@@ -19,20 +19,24 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'API V1',
-        version: 'v1'
+        version: 'v1',
       },
-      paths: {},
+      paths: {
+      },
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}:{defaultPort}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
-            }
-          }
-        }
-      ]
-    }
+              default: 'localhost',
+            },
+            defaultPort: {
+              default: '8080',
+            },
+          },
+        },
+      ],
+    },
   }
 
   # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.
