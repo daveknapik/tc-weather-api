@@ -1,8 +1,6 @@
 # TC Weather API
 
-An overview of the application, its purpose, and potential use cases
-
-TC Weather API is a simple wrapper around the OpenWeatherMap 2.5 current weather API that adds in OpenTelemetry for observability.
+TC Weather API is a simple wrapper around the [OpenWeatherMap 2.5 current weather API](https://openweathermap.org/current) that adds OpenTelemetry for observability.
 
 Potential use cases include:
 
@@ -482,7 +480,9 @@ http://localhost:8080/forecasts/Springfield?state=MO&country=US
 }
 ```
 
-## Recommendations on how the API could be improved or extended to cater to a broader audience
+## Recommendations for future direction
+
+### API improvements
 
 - Obfuscate OpenWeatherMap API key from telemetry
   - Currently the OpenWeatherMap API key can be seen in traces. We should find a way to obfuscate or redact it.
@@ -490,13 +490,16 @@ http://localhost:8080/forecasts/Springfield?state=MO&country=US
 - Add Swagger documentation integrated with tests via https://github.com/rswag/rswag
 - Dockerize the app with Jaeger to simplify local setup steps
 - Find a UI that supports Metrics and use it instead of or alongside Jaeger
+- Make metrics send interval configurable
+  - Currently metrics are hard-coded to send every 60 seconds
+
+### Accommodating a broader audience
+
 - Allow user to specify units other than `metric` (i.e., `standard` or `imperial`) when calling the OpenWeatherMap API
 - Add support for responses in locales other than English
   - e.g. `lang=ja`
 - Investigate how to add support for querying in Japanese
   - http://localhost:8080/forecasts/東京 works but http://localhost:8080/forecasts/京都 does not
-- Make metrics send interval configurable
-  - Currently metrics are hard-coded to send every 60 seconds
 - The OpenWeatherAPI does not reuse `state` as a way to query, for example, Canadian provinces or Japanese prefectures.
   - https://openweathermap.org/current notes, "searching by states available only for the USA locations"
   - Investigate alternate ways to provide this specificity and implement if there is significant user need.
