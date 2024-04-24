@@ -481,7 +481,7 @@ http://localhost:8080/forecasts/Springfield?state=MO&country=US
 }
 ```
 
-## Recommendations for future direction
+## Recommendations for future updates
 
 ### API improvements
 
@@ -493,6 +493,7 @@ http://localhost:8080/forecasts/Springfield?state=MO&country=US
 - Find a UI that supports Metrics and use it instead of or alongside Jaeger
 - Make metrics send interval configurable
   - Currently metrics are hard-coded to send every 60 seconds
+- Reflect on observability needs and add more traces and metrics accordingly
 
 ### Accommodating a broader audience
 
