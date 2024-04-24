@@ -29,7 +29,7 @@ Potential use cases include:
 
 ### Without telemetry
 
-Start the local server with `rails s` in the project root and navigate to http://localhost:3000/forecasts/Tokyo as an example. Change the city as needed.
+Start the local server with `rails server -p 8080` in the project root and navigate to http://localhost:3000/forecasts/Tokyo as an example. Change the city as needed.
 
 ### With telemetry, sent to console
 
@@ -72,7 +72,15 @@ Learn more about exporters at https://opentelemetry.io/docs/languages/ruby/expor
 
 This application records traces and metrics, but Jaeger UI only supports tracing. Currently the app sends metrics output to the console even with the above Jaeger instructions. Look at your console output to see metrics output, which is currently sent every 60 seconds.
 
+## Testing
+
+[RSpec](https://rspec.info/) is the testing framework we use, so tests can be run from your console with a simple `rspec spec`.
+
+Swagger support is integrated with RSpec via [rswag](https://github.com/rswag/rswag).
+
 ## API docs
+
+In addition to the below documentation, you can access Swagger documentation locally at http://localhost:8080/api-docs.
 
 ### GET /forecasts/:city
 
@@ -487,8 +495,6 @@ http://localhost:8080/forecasts/Springfield?state=MO&country=US
 
 - Obfuscate OpenWeatherMap API key from telemetry
   - Currently the OpenWeatherMap API key can be seen in traces. We should find a way to obfuscate or redact it.
-- Add tests
-- Add Swagger documentation integrated with tests via https://github.com/rswag/rswag
 - Dockerize the app with Jaeger to simplify local setup steps
 - Find a UI that supports Metrics and use it instead of or alongside Jaeger
 - Make metrics send interval configurable
