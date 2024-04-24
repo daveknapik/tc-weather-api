@@ -76,7 +76,7 @@ This application records traces and metrics, but Jaeger UI only supports tracing
 
 [RSpec](https://rspec.info/) is the testing framework we use, so tests can be run from your console with a simple `rspec spec`.
 
-Swagger support is integrated with RSpec via [rswag](https://github.com/rswag/rswag).
+Swagger support is integrated with RSpec via [rswag](https://github.com/rswag/rswag). To run tests and regenerate Swagger docs after changes to the API, run `rake rswag:specs:swaggerize` from your console.
 
 ## API docs
 

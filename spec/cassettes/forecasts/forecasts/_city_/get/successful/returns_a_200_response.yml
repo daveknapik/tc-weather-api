@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.openweathermap.org/data/2.5/weather?appid=***REMOVED***&q=123&units=metric
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_MAP_API_KEY>&q=Chicago,IL,US&units=metric
     body:
       encoding: US-ASCII
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - OpenWeather Ruby Client/0.4.0
       Traceparent:
-      - 00-366944e239a71d9b7a8f4a2ad846448f-b548175fe5fe3ca4-01
+      - 00-2170abf5c64667781f639345a45a476f-6224be5d13be4675-01
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -25,15 +25,15 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Wed, 24 Apr 2024 12:41:25 GMT
+      - Wed, 24 Apr 2024 13:50:21 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '467'
+      - '483'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/data/2.5/weather?q=123&units=metric"
+      - "/data/2.5/weather?q=chicago%2cil%2cus&units=metric"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -42,7 +42,7 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"coord":{"lon":120.9887,"lat":14.645},"weather":[{"id":801,"main":"Clouds","description":"few
-        clouds","icon":"02n"}],"base":"stations","main":{"temp":31.62,"feels_like":38.62,"temp_min":30.52,"temp_max":31.94,"pressure":1010,"humidity":71},"visibility":10000,"wind":{"speed":4.12,"deg":130},"clouds":{"all":20},"dt":1713962485,"sys":{"type":2,"id":2008256,"country":"PH","sunrise":1713908206,"sunset":1713953476},"timezone":28800,"id":1692193,"name":"123","cod":200}'
-  recorded_at: Wed, 24 Apr 2024 12:41:25 GMT
+      string: '{"coord":{"lon":-87.65,"lat":41.85},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":4.11,"feels_like":-0.89,"temp_min":3.33,"temp_max":5.3,"pressure":1024,"humidity":72},"visibility":10000,"wind":{"speed":7.72,"deg":10,"gust":13.38},"clouds":{"all":100},"dt":1713966600,"sys":{"type":2,"id":2010190,"country":"US","sunrise":1713956143,"sunset":1714005674},"timezone":-18000,"id":4887398,"name":"Chicago","cod":200}'
+  recorded_at: Wed, 24 Apr 2024 13:50:21 GMT
 recorded_with: VCR 6.2.0

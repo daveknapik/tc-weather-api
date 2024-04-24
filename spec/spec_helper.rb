@@ -19,6 +19,9 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.filter_sensitive_data('<OPEN_WEATHER_MAP_API_KEY>') do
+    ENV['OPEN_WEATHER_MAP_API_KEY']
+  end
 end
 
 RSpec.configure do |config|

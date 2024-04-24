@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.openweathermap.org/data/2.5/weather?appid=***REMOVED***&q=fhgwagads&units=metric
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_MAP_API_KEY>&q=fhgwagads,Strongbad,US&units=metric
     body:
       encoding: US-ASCII
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - OpenWeather Ruby Client/0.4.0
       Traceparent:
-      - 00-c1a01815245f9c9716360f25f03eacfe-0381589e90530727-01
+      - 00-7937014e07210a9e3ff475113d4343e4-38ae00cb7aab39f3-01
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Wed, 24 Apr 2024 12:41:26 GMT
+      - Wed, 24 Apr 2024 13:50:22 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -33,7 +33,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/data/2.5/weather?q=fhgwagads&units=metric"
+      - "/data/2.5/weather?q=fhgwagads%2cstrongbad%2cus&units=metric"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -43,5 +43,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"cod":"404","message":"city not found"}'
-  recorded_at: Wed, 24 Apr 2024 12:41:26 GMT
+  recorded_at: Wed, 24 Apr 2024 13:50:22 GMT
 recorded_with: VCR 6.2.0
