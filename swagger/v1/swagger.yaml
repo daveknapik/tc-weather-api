@@ -1,0 +1,38 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/forecasts/{city}":
+    parameters:
+    - name: city
+      in: path
+      description: city
+      required: true
+      schema:
+        type: string
+    - name: state
+      in: query
+      description: state
+      schema:
+        type: string
+    - name: country
+      in: query
+      description: country
+      schema:
+        type: string
+    get:
+      summary: show forecast
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: location not found
+servers:
+- url: http://{defaultHost}:{defaultPort}
+  variables:
+    defaultHost:
+      default: localhost
+    defaultPort:
+      default: '8080'

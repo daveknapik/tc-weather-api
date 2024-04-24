@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=***REMOVED***&q=123&units=metric
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenWeather Ruby Client/0.4.0
+      Traceparent:
+      - 00-366944e239a71d9b7a8f4a2ad846448f-b548175fe5fe3ca4-01
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 24 Apr 2024 12:41:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '467'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?q=123&units=metric"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":120.9887,"lat":14.645},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02n"}],"base":"stations","main":{"temp":31.62,"feels_like":38.62,"temp_min":30.52,"temp_max":31.94,"pressure":1010,"humidity":71},"visibility":10000,"wind":{"speed":4.12,"deg":130},"clouds":{"all":20},"dt":1713962485,"sys":{"type":2,"id":2008256,"country":"PH","sunrise":1713908206,"sunset":1713953476},"timezone":28800,"id":1692193,"name":"123","cod":200}'
+  recorded_at: Wed, 24 Apr 2024 12:41:25 GMT
+recorded_with: VCR 6.2.0
