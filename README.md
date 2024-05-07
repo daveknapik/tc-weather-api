@@ -29,7 +29,7 @@ Potential use cases include:
 
 ### Without telemetry
 
-Start the local server with `rails server -p 8080` in the project root and navigate to http://localhost:3000/forecasts/Tokyo as an example. Change the city as needed.
+Start the local server with `rails server -p 8080` in the project root and navigate to http://localhost:8080/forecasts/Tokyo as an example. Change the city as needed.
 
 ### With telemetry, sent to console
 
